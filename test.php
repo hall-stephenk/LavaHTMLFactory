@@ -8,6 +8,9 @@ $body		= LavaTagFactory::create('body');
 $h1		= LavaTagFactory::create('h1');
 $hr		= LavaTagFactory::create('hr');
 $p			= LavaTagFactory::create('p');
+
+$title->addChild("This is my title");
+
 // add text to the h1 tag
 $h1->addChild("Title of the Page");
 
@@ -25,15 +28,14 @@ for($i = 1; $i < 6; $i++) {
 }
 
 // Change 2nd paragraph (remember 0 index)
-$newP = LavaTagFactory::create('p');
-$newP->addChild("This is my new paragragh");
-$body->setChild($newP, 3);
+$body->getChild(5)->setChild("This is my new paragraph",0);
 
+$body->addChild(LavaTagFactory::create('p')->addChild("This is my OOP paragraph"));
 
 // Add head and body to html
 $html->addChild($head);
 $html->addChild($body);
 
-$html->render();
+$html->render(true);
 
 ?>

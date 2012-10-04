@@ -10,6 +10,7 @@ class LavaTag {
 	public function __construct($name, $selfClosing = false) {
 		$this->_selfClosing = $selfClosing;
 		$this->_name = $name;
+		return $this;
 	}
 	
 	public function addAttributes($attributes) {
@@ -45,14 +46,30 @@ class LavaTag {
 		} else {
 			$this->_children[$index] = $child;
 		}
-		return true;
+		return $this;
 	}
 		
 	public function setChild($child, $index) {
 		$this->_children[$index] = $child;
-		return true;
+		return $this;
 	}
 	
+	public function getChild($index) {
+		return $this->_children[$index];
+	}
+	
+	public function deleteChild($index) {
+		if(isset($this->_children[$index])) {
+			unset($this->_children[$index]);
+			return $this;
+		} else {	return false; }
+	}
+	
+	public function getChildCount() {
+		if(isset($this->_children)) {
+			return count($this->_children);
+		} else { return 0; }
+	}
 	public function render($formatOutput = false, $indent = 0) {
 		if($formatOutput) {
 			echo $this->_renderFormatted(0);
