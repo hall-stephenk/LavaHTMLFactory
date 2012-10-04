@@ -4,6 +4,7 @@ class LavaTag {
 	protected $_name;
 	protected $_attributes;
 	protected $_children;
+	protected $_styles;
 	
 	public function __construct($name) {
 		$this->_name = $name;
@@ -21,6 +22,17 @@ class LavaTag {
 		unset($this->_children[$key]);
 	}
 	
+	public function addStyles($styles) {
+		if(is_array($styles)) {
+			foreach($styles as $key => $value) {
+				$this->_styles[$key] = $value;
+			}
+			return true;
+		} else {
+			throw Exception("styles must be in an associative array");
+		}
+	}
+	
 	public function addChild($child) {
 		$this->_children[] = $child;
 		return true;
@@ -32,6 +44,14 @@ class LavaTag {
 			foreach($this->_attributes as $key => $value) {
 				echo " " . $key . "='" . $value . "'";
 			}
+		}
+		if(isset($this->_styles) && count($this->_styles) > 0) {
+			echo " style='";
+			foreach($this->_styles as $key => $value) {
+				echo "$key:$value;";
+			}
+			echo "'";
+				
 		}
 		echo ">";	
 		if(isset($this->_children) && count($this->_children) > 0) {
