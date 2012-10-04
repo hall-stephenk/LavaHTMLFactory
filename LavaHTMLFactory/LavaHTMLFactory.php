@@ -1,26 +1,31 @@
 <?php
 
-abstract class LavaTag {
+class LavaTag {
 	protected $_name;
 	protected $_attributes;
 	protected $_children;
-	protected $_innerHTML;
 	
 	public function __construct($name) {
 		$this->_name = $name;
 	}
 	
+	public function addAttributes($attributes) {
+		if(is_array($attributes)) {
+			foreach($attributes as $key => $value) {
+				$this->_attributes[$key] = $value;
+			}
+		} else { return false; }
+	}
+	
+	public function delAttribute($key) {
+		unset($this->_children[$key]);
+	}
+	
 	public function addChild($child) {
-		if($child instanceOf LavaTag) {
-			$this->_children[] = $child;
-			return true;
-		} else { return false;	}
+		$this->_children[] = $child;
+		return true;
 	}
-	
-	public function innerHTML($text) {
-		$this->_innerHTML = $text;
-	}
-	
+		
 	public function render() {
 		echo "<" . $this->_name;
 		if(isset($this->_attributes) && count($this->_attributes) > 0) {
@@ -30,7 +35,7 @@ abstract class LavaTag {
 		}
 		echo ">";	
 		if(isset($this->_children) && count($this->_children) > 0) {
-			foreach($this->children as $child) {
+			foreach($this->_children as $child) {
 				if($child instanceOf LavaTag) {
 					$child->render();
 				} else {
@@ -42,5 +47,12 @@ abstract class LavaTag {
 		return true;
 	}
 }
+
+class LavaTagFactory {
+	public static function create($name) {
+		return new LavaTag($name);
+	}
+}
+
 
 ?>
