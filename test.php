@@ -25,7 +25,9 @@ for($i = 1; $i < 6; $i++) {
 }
 
 // Change 2nd paragraph (remember 0 index)
-$body->setChild(LavaTagFactory::create('p')->addChild("This is a replaced Child Paragraph"), 3);
+$newP = LavaTagFactory::create('p');
+$newP->addChild("This is my new paragragh");
+$body->setChild($newP, 3);
 
 
 // Add head and body to html
