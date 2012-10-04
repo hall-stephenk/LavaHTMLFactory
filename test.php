@@ -1,13 +1,13 @@
 <?php
 include('LavaHTMLFactory/LavaHTMLFactory.php');
 
-$html = LavaTagFactory::create('html');
-$head = LavaTagFactory::create('head');
-$title= LavaTagFactory::create('title');
-$body = LavaTagFactory::create('body');
-$h1	= LavaTagFactory::create('h1');
-$hr	= LavaTagFactory::create('hr');
-$p		= LavaTagFactory::create('p');
+$html		= LavaTagFactory::create('html');
+$head		= LavaTagFactory::create('head');
+$title	= LavaTagFactory::create('title');
+$body		= LavaTagFactory::create('body');
+$h1		= LavaTagFactory::create('h1');
+$hr		= LavaTagFactory::create('hr');
+$p			= LavaTagFactory::create('p');
 // add text to the h1 tag
 $h1->addChild("Title of the Page");
 
