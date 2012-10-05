@@ -22,7 +22,7 @@ $body->addAttributes(array("class" => "container"));
 $body->addStyles(array("font-family" => "sans-serif"));
 $body->addChild($h1);
 $body->addChild($hr);
-// add 6000 paragraphs to the body
+// add 600 paragraphs to the body
 for($i = 1; $i <= 600; $i++) {
 	$a = LavaTagFactory::create('p');	
 	$a->addChild("This is paragraph number $i");
