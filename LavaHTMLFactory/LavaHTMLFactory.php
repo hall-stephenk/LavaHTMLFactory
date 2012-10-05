@@ -102,7 +102,7 @@ class LavaTag {
 			if(isset($this->_children) && count($this->_children) > 0) {
 				foreach($this->_children as $child) {
 					if($child instanceOf LavaTag) {
-						$render .= $child->_renderFormatted($indent + 1);
+						$render .= $indent . $child->_renderFormatted($indent + 1);
 					} else {
 						$render .= $indent . "\t" . $child . "\n";
 					}
